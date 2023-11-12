@@ -8,12 +8,38 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
+    <style>
+      img{
+        width: 100%;
+      }
+      body {
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: 100vh;
+        --opacidad-negro: 0.5;
+        background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url(https://www.pixel4k.com/wp-content/uploads/2018/10/nike-black-play-football_1538786713.jpg.webp);
+      }
+    </style>
   </head>
   <body>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="listaClausura.html">Lista clausura</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="listaApertura.html">Lista del Apertura</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" aria-disabled="true" href="listaAcumulada.html">Lista acumulada</a>
+    </li>
+  </ul>
     <br>
     <div class="text-center">
-      <h1>Tabla Acumulada</h1>
+      <h1 style="color: white">Tabla Acumulada</h1>
     </div>
     <!--<br>
     <button class="btn btn-primary mb-4">Nuevo Jugador</button>-->
@@ -22,16 +48,16 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th>#</th>
-            <th>Equipo</th>
-            <th>Partidos Jugados</th>
-            <th>Partidos ganados</th>
-            <th>Partidos perdidos</th>
-            <th>Partidos empatados</th>
-            <th>Goles a favor</th>
-            <th>Goles en contra</th>
-            <th>Goles de diferencia</th>
-            <th>Puntos</th>
+            <th style="color: white">#</th>
+            <th style="color: white">Equipo</th>
+            <th style="color: white">Partidos Jugados</th>
+            <th style="color: white">Partidos ganados</th>
+            <th style="color: white">Partidos perdidos</th>
+            <th style="color: white">Partidos empatados</th>
+            <th style="color: white">Goles a favor</th>
+            <th style="color: white">Goles en contra</th>
+            <th style="color: white">Goles de diferencia</th>
+            <th style="color: white">Puntos</th>
           </tr>
         </thead>
         <tbody id="tablaAcumulada">
@@ -77,30 +103,30 @@
 
             var tablaHTML = '<table class="table">';
             tablaHTML += '<thead class="thead-dark"><tr>';
-            tablaHTML += '<th>Equipo ID</th>';
-            tablaHTML += '<th>Partidos Jugados</th>';
-            tablaHTML += '<th>Partidos ganados</th>';
-            tablaHTML += '<th>Partidos perdidos</th>';
-            tablaHTML += '<th>Partidos Empatados</th>';
-            tablaHTML += '<th>Goles a Favor</th>';
-            tablaHTML += '<th>Goles en Contra</th>';
-            tablaHTML += '<th>Goles de diferencia</th>';
-            tablaHTML += '<th>Puntos</th>';
+            tablaHTML += '<th style="color: white">Equipo ID</th>';
+            tablaHTML += '<th style="color: white">Partidos Jugados</th>';
+            tablaHTML += '<th style="color: white">Partidos ganados</th>';
+            tablaHTML += '<th style="color: white">Partidos perdidos</th>';
+            tablaHTML += '<th style="color: white">Partidos Empatados</th>';
+            tablaHTML += '<th style="color: white">Goles a Favor</th>';
+            tablaHTML += '<th style="color: white">Goles en Contra</th>';
+            tablaHTML += '<th style="color: white">Goles de diferencia</th>';
+            tablaHTML += '<th style="color: white">Puntos</th>';
             tablaHTML += '</tr></thead>';
             tablaHTML += '<tbody>';
 
             for (var ideq in datosAgregados) {
               var item = datosAgregados[ideq];
               tablaHTML += '<tr>';
-              tablaHTML += '<td>' + item.equipo_id + '</td>';
-              tablaHTML += '<td>' + item.suma_partidos_jugados + '</td>';
-              tablaHTML += '<td>' + item.suma_partidos_ganados + '</td>';
-              tablaHTML += '<td>' + item.suma_partidos_perdidos + '</td>';
-              tablaHTML += '<td>' + item.suma_partidos_empatados + '</td>';
-              tablaHTML += '<td>' + item.suma_goles_favor + '</td>';
-              tablaHTML += '<td>' + item.suma_goles_contra + '</td>';
-              tablaHTML += '<td>' + item.suma_goles_diferencia + '</td>';
-              tablaHTML += '<td>' + item.suma_puntos + '</td>';
+              tablaHTML += '<td style="color: white">' + item.equipo_id + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_partidos_jugados + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_partidos_ganados + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_partidos_perdidos + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_partidos_empatados + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_goles_favor + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_goles_contra + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_goles_diferencia + '</td>';
+              tablaHTML += '<td style="color: white">' + item.suma_puntos + '</td>';
               tablaHTML += '</tr>';
             }
 
