@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lista acumulada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <br>
+    <div class="text-center">
+      <h1>Tabla Acumulada</h1>
+    </div>
+    <!--<br>
+    <button class="btn btn-primary mb-4">Nuevo Jugador</button>-->
+    <br>
+    <div class="container mt-4">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Equipo</th>
+            <th>Partidos Jugados</th>
+            <th>Partidos ganados</th>
+            <th>Partidos perdidos</th>
+            <th>Partidos empatados</th>
+            <th>Goles a favor</th>
+            <th>Goles en contra</th>
+            <th>Goles de diferencia</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody id="tablaAcumulada">
+        </tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: "http://localhost:8000/api/liga/",
+          method: "GET",
+          dataType: "json"
+        })
+          .done(function(data) {
+            var datosAgregados = {};
+
+            data.forEach(function(item) {
+              var ideq = item.equipo.id;
+
+              if (!datosAgregados[ideq]) {
+                datosAgregados[ideq] = {
+                  equipo_id: item.equipo.id,
+                  suma_partidos_jugados: 0,
+                  suma_partidos_ganados: 0,
+                  suma_partidos_perdidos: 0,
+                  suma_partidos_empatados: 0,
+                  suma_goles_favor: 0,
+                  suma_goles_contra: 0,
+                  suma_goles_diferencia: 0,
+                  suma_puntos: 0
+                };
+              }
+
+              datosAgregados[ideq].suma_partidos_jugados += item.partidos_jugados;
+              datosAgregados[ideq].suma_partidos_ganados += item.partidos_ganados;
+              datosAgregados[ideq].suma_partidos_perdidos += item.partidos_perdidos;
+              datosAgregados[ideq].suma_partidos_empatados += item.partidos_empatados;
+              datosAgregados[ideq].suma_goles_favor += item.goles_favor;
+              datosAgregados[ideq].suma_goles_contra += item.goles_contra;
+              datosAgregados[ideq].suma_goles_diferencia += item.goles_diferencia;
+              datosAgregados[ideq].suma_puntos += item.puntos;
+            });
+
+            var tablaHTML = '<table class="table">';
+            tablaHTML += '<thead class="thead-dark"><tr>';
+            tablaHTML += '<th>Equipo ID</th>';
+            tablaHTML += '<th>Partidos Jugados</th>';
+            tablaHTML += '<th>Partidos ganados</th>';
+            tablaHTML += '<th>Partidos perdidos</th>';
+            tablaHTML += '<th>Partidos Empatados</th>';
+            tablaHTML += '<th>Goles a Favor</th>';
+            tablaHTML += '<th>Goles en Contra</th>';
+            tablaHTML += '<th>Goles de diferencia</th>';
+            tablaHTML += '<th>Puntos</th>';
+            tablaHTML += '</tr></thead>';
+            tablaHTML += '<tbody>';
+
+            for (var ideq in datosAgregados) {
+              var item = datosAgregados[ideq];
+              tablaHTML += '<tr>';
+              tablaHTML += '<td>' + item.equipo_id + '</td>';
+              tablaHTML += '<td>' + item.suma_partidos_jugados + '</td>';
+              tablaHTML += '<td>' + item.suma_partidos_ganados + '</td>';
+              tablaHTML += '<td>' + item.suma_partidos_perdidos + '</td>';
+              tablaHTML += '<td>' + item.suma_partidos_empatados + '</td>';
+              tablaHTML += '<td>' + item.suma_goles_favor + '</td>';
+              tablaHTML += '<td>' + item.suma_goles_contra + '</td>';
+              tablaHTML += '<td>' + item.suma_goles_diferencia + '</td>';
+              tablaHTML += '<td>' + item.suma_puntos + '</td>';
+              tablaHTML += '</tr>';
+            }
+
+            tablaHTML += '</tbody></table>';
+
+            $('#tablaAcumulada').html(tablaHTML);
+          })
+          .fail(function(err) {
+            console.log(err);
+          });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

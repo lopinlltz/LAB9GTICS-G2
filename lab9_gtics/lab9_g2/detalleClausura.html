@@ -38,7 +38,11 @@
     </li>
   </ul>
     <br>
-    <center><h1 style="color: white">Detalles del Equipo</h1></center>
+
+    <div class="text-center">
+      <center><h1 style="color: white">Detalles del Equipo</h1></center>
+    </div>
+
     <div class="container mt-4" id="detalleEquipo">
       <table class="table" id="tablaDetalleClausura">
         <thead class="thead-dark">
@@ -54,34 +58,26 @@
     </div>
 
     <script>
-      // Obtener el ID del equipo de la URL
       const urlParams = new URLSearchParams(window.location.search);
       const equipoID = urlParams.get('id');
-
-      // Hacer una petición AJAX para obtener la información detallada del equipo
       $.ajax({
         url: 'http://localhost:8000/api/equipos/' + equipoID,
         method: 'GET',
         dataType: 'json'
       })
         .done(function (equipodata){
-          console.log(equipodata); // Imprime la respuesta del equipo en la consola
+          console.log(equipodata);
 
-          // Construir la tabla para mostrar la información detallada del equipo
           var tableHTML = '<table class="table">';
-          tableHTML += '<tr><th style="color: white">ID</th><th style="color: white">Nombre</th><th style="color: white">Estadio</th></tr>'; // Agrega encabezados o las columnas necesarias
-
-          // Agrega una fila con los datos del equipo
+          tableHTML += '<tr><th style="color: white">ID</th><th style="color: white">Nombre</th><th style="color: white">Estadio</th></tr>';
           tableHTML += '<tr style="color: white">';
           tableHTML += '<td style="color: white">' + equipodata.id + '</td>';
           tableHTML += '<td style="color: white">' + equipodata.nombre + '</td>';
           tableHTML += '<td style="color: white">' + equipodata.estadio + '</td>';
-          // ... añade las demás celdas con la información del equipo
           tableHTML += '</tr>';
-
           tableHTML += '</table>';
 
-          $('#detalleEquipo').html(tableHTML); // Agrega la tabla al elemento con el ID "detalleEquipo"
+          $('#detalleEquipo').html(tableHTML);
         })
         .fail(function (err){
           console.log(err);
