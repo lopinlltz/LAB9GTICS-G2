@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Detalles - Liga Clausura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <br>
+    <h1>Detalles del Equipo</h1>
+    <div class="container mt-4" id="detalleEquipo">
+      <table class="table" id="tablaDetalleClausura">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Estadio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se llenarán dinámicamente los datos del equipo -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // Obtener el ID del equipo de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const equipoID = urlParams.get('id');
+
+      // Hacer una petición AJAX para obtener la información detallada del equipo
+      $.ajax({
+        url: 'http://localhost:8000/api/equipos/' + equipoID,
+        method: 'GET',
+        dataType: 'json'
+      })
+        .done(function (equipodata){
+          console.log(equipodata); // Imprime la respuesta del equipo en la consola
+
+          // Construir la tabla para mostrar la información detallada del equipo
+          var tableHTML = '<table class="table">';
+          tableHTML += '<tr><th>ID</th><th>Nombre</th><th>Estadio</th></tr>'; // Agrega encabezados o las columnas necesarias
+
+          // Agrega una fila con los datos del equipo
+          tableHTML += '<tr>';
+          tableHTML += '<td>' + equipodata.id + '</td>';
+          tableHTML += '<td>' + equipodata.nombre + '</td>';
+          tableHTML += '<td>' + equipodata.estadio + '</td>';
+          // ... añade las demás celdas con la información del equipo
+          tableHTML += '</tr>';
+
+          tableHTML += '</table>';
+
+          $('#detalleEquipo').html(tableHTML); // Agrega la tabla al elemento con el ID "detalleEquipo"
+        })
+        .fail(function (err){
+          console.log(err);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+  </body>
+</html>
