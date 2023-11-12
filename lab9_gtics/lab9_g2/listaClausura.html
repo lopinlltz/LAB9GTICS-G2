@@ -8,12 +8,24 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
+    <style>
+      img{
+        width: 100%;
+      }
+      body {
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: 100vh;
+        --opacidad-negro: 0.5;
+        background-image: linear-gradient(rgba(0, 0, 0, var(--opacidad-negro)), rgba(0, 0, 0, var(--opacidad-negro))), url(https://www.pixel4k.com/wp-content/uploads/2018/10/nike-black-play-football_1538786713.jpg.webp);
+      }
+    </style>
   </head>
   <body>
     <br>
     <div>
-      <h1>Tabla de clausura</h1>
+      <center><h1 style="color: white">Tabla de clausura</h1></center>
     </div>
     <!--<br>
     <button class="btn btn-primary mb-4">Nuevo Jugador</button>-->
@@ -22,17 +34,17 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th>#</th>
-            <th>Liga</th>
-            <th>Partidos Jugados</th>
-            <th>Partidos ganados</th>
-            <th>Partidos perdidos</th>
-            <th>Partidos empatados</th>
-            <th>Goles a favor</th>
-            <th>Goles en contra</th>
-            <th>Goles de diferencia</th>
-            <th>Puntos</th>
-            <th>Equipo</th>
+            <th style="color: white">#</th>
+            <th style="color: white">Liga</th>
+            <th style="color: white">Partidos Jugados</th>
+            <th style="color: white">Partidos ganados</th>
+            <th style="color: white">Partidos perdidos</th>
+            <th style="color: white">Partidos empatados</th>
+            <th style="color: white">Goles a favor</th>
+            <th style="color: white">Goles en contra</th>
+            <th style="color: white">Goles de diferencia</th>
+            <th style="color: white">Puntos</th>
+            <th style="color: white">Equipo</th>
           </tr>
         </thead>
         <tbody id="tablaClausura">
@@ -58,12 +70,12 @@
                 idlista++;
                 var botonDetalles = '<button class="btn btn-info" id="detallesboton' + liga2.equipo.id + '">Más Detalles</button>';
 
-                $("#tablaClausura").append('<tr><td>' + idlista + '</td><td>' + liga2.liga +
-                  '</td><td>' + liga2.partidos_jugados + '</td><td>' + liga2.partidos_ganados +
-                  '</td><td>' + liga2.partidos_perdidos +
-                  '</td><td>' + liga2.partidos_empatados + '</td><td>' + liga2.goles_favor +
-                  '</td><td>' + liga2.goles_contra + '</td><td>' + liga2.goles_diferencia +
-                  '</td><td>' + liga2.puntos + '</td><td>' + liga2.equipo.id + '</td><td>' +
+                $("#tablaClausura").append('<tr><td style="color: white">' + idlista + '</td><td style="color: white">' + liga2.liga +
+                  '</td><td style="color: white">' + liga2.partidos_jugados + '</td><td style="color: white">' + liga2.partidos_ganados +
+                  '</td><td style="color: white">' + liga2.partidos_perdidos +
+                  '</td><td style="color: white">' + liga2.partidos_empatados + '</td><td style="color: white">' + liga2.goles_favor +
+                  '</td><td style="color: white">' + liga2.goles_contra + '</td><td style="color: white">' + liga2.goles_diferencia +
+                  '</td><td style="color: white">' + liga2.puntos + '</td><td style="color: white">' + liga2.equipo.id + '</td><td style="color: white">' +
                   botonDetalles + '</td></tr>')
 
               }
