@@ -22,40 +22,32 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Aquí se llenarán dinámicamente los datos del equipo -->
         </tbody>
       </table>
     </div>
 
     <script>
-      // Obtener el ID del equipo de la URL
       const urlParams = new URLSearchParams(window.location.search);
       const equipoID = urlParams.get('id');
-
-      // Hacer una petición AJAX para obtener la información detallada del equipo
       $.ajax({
         url: 'http://localhost:8000/api/equipos/' + equipoID,
         method: 'GET',
         dataType: 'json'
       })
         .done(function (equipodata){
-          console.log(equipodata); // Imprime la respuesta del equipo en la consola
+          console.log(equipodata);
 
-          // Construir la tabla para mostrar la información detallada del equipo
           var tableHTML = '<table class="table">';
-          tableHTML += '<tr><th>ID</th><th>Nombre</th><th>Estadio</th></tr>'; // Agrega encabezados o las columnas necesarias
-
-          // Agrega una fila con los datos del equipo
+          tableHTML += '<tr><th>ID</th><th>Nombre</th><th>Estadio</th></tr>';
           tableHTML += '<tr>';
           tableHTML += '<td>' + equipodata.id + '</td>';
           tableHTML += '<td>' + equipodata.nombre + '</td>';
           tableHTML += '<td>' + equipodata.estadio + '</td>';
-          // ... añade las demás celdas con la información del equipo
           tableHTML += '</tr>';
 
           tableHTML += '</table>';
 
-          $('#detalleEquipo').html(tableHTML); // Agrega la tabla al elemento con el ID "detalleEquipo"
+          $('#detalleEquipo').html(tableHTML);
         })
         .fail(function (err){
           console.log(err);
